@@ -87,9 +87,9 @@ public class MinDis extends Activity
 
 			// the following converts spinner input into string
 			bday = month.getSelectItem().toString();
-			bday += "/"
+			bday += "/";
 			bday += day.getSelectedItem().toString();
-			bday += "/"
+			bday += "/";
 			bday += byear.getSelectedItem().toString();
 
 			// get selection from combobox

@@ -39,4 +39,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 	<string name="error">Value(s) cannot be parsed!</string>
 <!-- text for okay button -->
 	<string name="ok">OK</string>
+    <string name="month">Birth Month</string>
+    <string name="day">Birth Day</string>
+    <string name="year">Birth Year</string>
 </resources>
