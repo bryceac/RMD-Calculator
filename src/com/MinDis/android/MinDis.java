@@ -47,14 +47,21 @@ public class MinDis extends Activity
 
 	month = (Spinner)findViewById(R.id.month);
 	madapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
+
+	madapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	month.setAdapter(madapter);
 
 	day = (Spinner)findViewById(R.id.month);
 	dadapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_dropdown_item);
+	
+	dadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	day.setAdapter(dadapter);
 
 	byear = (Spinner)findViewById(R.id.month);
 	yadapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
+
+	yadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 	byear.setAdapter(yadapter);
 
 	balance = (EditText)findViewById(R.id.amount); // get Textfield
