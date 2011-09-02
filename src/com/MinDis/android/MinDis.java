@@ -51,13 +51,13 @@ public class MinDis extends Activity
 	madapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	month.setAdapter(madapter);
 
-	day = (Spinner)findViewById(R.id.month);
+	day = (Spinner)findViewById(R.id.day);
 	dadapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_dropdown_item);
 	
 	dadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	day.setAdapter(dadapter);
 
-	byear = (Spinner)findViewById(R.id.month);
+	byear = (Spinner)findViewById(R.id.byear);
 	yadapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
 
 	yadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
