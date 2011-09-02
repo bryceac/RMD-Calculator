@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<!-- create birth date label -->
+<TextView android:id="@+id/mess"  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+	android:text="@string/request"
+    />
+<!-- create textfield to get birth date -->
+<EditText android:id="@+id/date"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	/>
+<!-- create balance label -->
+<TextView android:id="@+id/bal"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="@string/balance"
+/>
+<!-- create textfield to get balance -->
+<EditText android:id="@+id/amount"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+/>
+<!-- create year label -->
+<TextView android:id="@+id/year"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="@string/y"
+/>
+<!-- create combobox to select year -->
+<Spinner android:id="@+id/spinner"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:drawSelectorOnTop="true"
+	android:prompt="@string/choices"
+/>
+<!-- create result label -->
+<TextView android:id="@+id/result"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="@string/rl"
+/>
+<!-- create textfield to display results -->
+<EditText android:id="@+id/rmd"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="#FFFFFF"
+/>
+<!-- create calculate button -->
+<Button android:id="@+id/calculate"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="@string/calculate"
+	android:onClick="rmdAction"
+/>
+</LinearLayout>
+

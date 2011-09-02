@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- application name -->
+    <string name="app_name">RMD Calculator</string>
+<!-- request birth date -->
+	<string name="request">Enter Birthdate (MM/dd/yyyy)</string>
+<!-- text for calculate button -->
+	<string name="calculate">Calculate RMD</string>
+<!-- text for result label -->
+	<string name="rl">RMD:</string>
+<!-- text asking for balance -->
+	<string name="balance">Enter Account balance</string>
+<!-- text to specify where years can be chosen -->
+	<string name="y">Year:</string>
+<!-- text for Combobox selection pop up -->
+	<string name="choices">Choices</string>
+<!-- set title for EULA Dialog -->
+	<string name="about_title">MIT License</string>
+<!-- text for agree button -->
+	<string name="about_agree_button">Agree</string>
+<!-- text for disagree button -->
+	<string name="about_da_button">Disagree</string>
+<!-- license text -->
+	<string name="about_body">
+Copyright (c) 2011 Bryce Campbell\n\n
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\n
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.\n\n
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</string>
+<!-- title for error dialog -->
+	<string name="error_title">Error!</string>
+<!-- error text -->
+	<string name="error">Value(s) cannot be parsed!</string>
+<!-- text for okay button -->
+	<string name="ok">OK</string>
+</resources>

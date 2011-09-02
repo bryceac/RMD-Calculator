@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- the following array provides choices for the application's combobox -->
+    <string-array name="choices_array">
+	<item>2011</item>
+	<item>2012</item>
+	<item>2013</item>
+	<item>2014</item>
+	<item>2015</item>
+	<item>2016</item>
+	<item>2017</item>
+	<item>2018</item>
+	<item>2019</item>
+    </string-array>
+</resources>
