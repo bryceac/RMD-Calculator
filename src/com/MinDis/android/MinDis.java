@@ -32,7 +32,7 @@ public class MinDis extends Activity
 	EditText balance;
 	Button calc;
 	Spinner selection;
-	ArrayAdapter adapter;
+	ArrayAdapter adapter, madapter, dadapter, yadapter;
 	RMD comp = new RMD();
 	NumberFormat dp = NumberFormat.getInstance(); /* variable to initiate way of parsing input */
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
@@ -86,7 +86,7 @@ public class MinDis extends Activity
 			Number principle = dp.parse(amount);
 
 			// the following converts spinner input into string
-			bday = month.getSelectItem().toString();
+			bday = month.getSelectedItem().toString();
 			bday += "/";
 			bday += day.getSelectedItem().toString();
 			bday += "/";
