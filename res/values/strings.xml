@@ -3,7 +3,7 @@
 <!-- application name -->
     <string name="app_name">RMD Calculator</string>
 <!-- request birth date -->
-	<string name="request">Enter Birthdate (MM/dd/yyyy)</string>
+	<string name="request">Enter Birthdate</string>
 <!-- text for calculate button -->
 	<string name="calculate">Calculate RMD</string>
 <!-- text for result label -->
