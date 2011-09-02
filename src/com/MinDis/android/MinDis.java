@@ -27,7 +27,7 @@ public class MinDis extends Activity
 {
 
 	/* The following are variable to hold data for application */
-	EditText date;
+	Spinner month, day, byear;
 	EditText rmd;
 	EditText balance;
 	Button calc;
@@ -45,7 +45,18 @@ public class MinDis extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); // get Application layout
 
-	date = (EditText)findViewById(R.id.date); // get Textfield
+	month = (Spinner)findViewById(R.id.month);
+	madapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
+	month.setAdapter(madapter);
+
+	day = (Spinner)findViewById(R.id.month);
+	dadapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_dropdown_item);
+	day.setAdapter(dadapter);
+
+	byear = (Spinner)findViewById(R.id.month);
+	yadapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
+	byear.setAdapter(yadapter);
+
 	balance = (EditText)findViewById(R.id.amount); // get Textfield
 	/* the following two statements creates a combobox */
 	selection = (Spinner)findViewById(R.id.spinner);
@@ -64,7 +75,7 @@ public class MinDis extends Activity
 		try
 		{
 			// the following holds data inputted by user
-			String day;
+			String bday;
 			String choice;
 			String amount;
 			int year;
@@ -73,7 +84,13 @@ public class MinDis extends Activity
 			amount = balance.getText().toString();
 
 			Number principle = dp.parse(amount);
-			day = date.getText().toString();
+
+			// the following converts spinner input into string
+			bday = month.getSelectItem().toString();
+			bday += "/"
+			bday += day.getSelectedItem().toString();
+			bday += "/"
+			bday += byear.getSelectedItem().toString();
 
 			// get selection from combobox
 			choice = selection.getSelectedItem().toString();
@@ -82,7 +99,7 @@ public class MinDis extends Activity
 			year = Integer.parseInt(choice);
 
 			comp.setYear(year); /* pass choice to external class */
-			comp.setBDate(day); /* pass birthday to external class */
+			comp.setBDate(bday); /* pass birthday to external class */
 			comp.setBalance(principle.doubleValue()); /* pass account balance to external class */
 
 			// get results
