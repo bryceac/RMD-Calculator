@@ -152,7 +152,7 @@ public class MinDis extends Activity
 				startActivity(i);
 				return true;
 			case R.id.report:
-				Intent b = new Intent(Intent.ACTION_VIEW, Uri.parse("http://brycec.dyndns.org/~bryce/mantis"));
+				Intent b = new Intent(Intent.ACTION_VIEW, Uri.parse("http://brycecampbell.me/~bryce/mantis"));
 				startActivity(b);
 				return true;
 			case R.id.contact:

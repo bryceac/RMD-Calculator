@@ -27,7 +27,7 @@ public class RMD
 	long age; // variable to hold age
 	String bdate; // variable to hold birthday
 	SimpleDateFormat sd = new SimpleDateFormat("MM/dd/yyyy"); /* variable used to convert input to date */
-	prevDate initial = new prevDate(); /* create new object from external class */
+	prevDate initial = new calcDate(); /* create new object from external class */
 	int year; // variable to hold year
 
 	/** the setBalance method is used to set an account balance for RMD calculations */
