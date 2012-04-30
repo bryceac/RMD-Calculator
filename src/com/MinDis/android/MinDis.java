@@ -22,7 +22,7 @@ import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
 import java.text.*; // required to parse and format data
-
+import java.util.*; // import for calendar
 public class MinDis extends Activity
 {
 
@@ -34,6 +34,9 @@ public class MinDis extends Activity
 	Spinner selection;
 	ArrayAdapter adapter, madapter, dadapter, yadapter;
 	RMD comp = new RMD();
+    DBHandler db = new DBHandler(this);
+    DBOP par = new DBOP();
+    BCal bcal = new BCal();
 	NumberFormat dp = NumberFormat.getInstance(); /* variable to initiate way of parsing input */
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
 
@@ -144,9 +147,49 @@ public class MinDis extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+        par.setMonthAdapter(month);
+        par.setDayAdapter(day);
+        par.setYearAdapter(byear);
+        par.setDistAdapter(selection);
+        SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
+        
+        
+        String bday;
+        // the following converts spinner input into string
+        bday = month.getSelectedItem().toString();
+        bday += "/";
+        bday += day.getSelectedItem().toString();
+        bday += "/";
+        bday += byear.getSelectedItem().toString();
+        
+        
+        par.setBirth(bday);
+        par.setDistrib(Integer.parseInt(selection.getSelectedItem().toString()));
+        par.setBal(balance.getText().toString());
+        
+        bcal.setBirth(db.getBirth());
+        bcal.setCal(bcal.getBirth());
 		// handle item selection
 		 switch (item.getItemId())
 		{
+            case R.id.save:
+                db.saveData(par.getBirth(), par.getBal(), par.getDistrib());
+                return true;
+            case R.id.load:
+                par.setSMonth(bcal.getCal().get(Calendar.MONTH) +1);
+                par.setSDay(bcal.getCal().get(Calendar.DATE));
+                par.setSYear(bcal.getCal().get(Calendar.YEAR));
+                par.setSDistrib(db.getYear());
+                month.setSelection(par.getSMonth());
+                day.setSelection(par.getSDay());
+                byear.setSelection(par.getSYear());
+                selection.setSelection(par.getSDistrib());
+                balance.setText(cf.format(db.getBal()));
+                return true;
+            case R.id.update:
+                db.updateData(par.getBirth(), par.getBal(), par.getDistrib());
+                return true;
 			case R.id.license:
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dl.dropbox.com/u/332246/LICENSE.txt"));
 				startActivity(i);

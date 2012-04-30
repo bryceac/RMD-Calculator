@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/save"
+	android:title="Save Data" />
+<item android:id="@+id/load"
+	android:title="Load Data" />
+<item android:id="@+id/update"
+	android:title="Update Data" />
 <item android:id="@+id/license"
 	android:title="View License" />
 <item android:id="@+id/report" 

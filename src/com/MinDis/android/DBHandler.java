@@ -13,8 +13,7 @@
 *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING *FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER *DEALINGS IN THE SOFTWARE.
 */
 
-/** The RMD class specifies methods for RMD calculation and uses an *external class for setting a date, in order to make calculations accurate
-*/
+/** The DBHandler class specifies methods for working with SQLite. */
 
 package com.MinDis.android;
 import java.util.*;
@@ -67,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper
 	}
 
 	// create insert method
-	public void SaveData(String a, double b, int c)
+	public void saveData(String a, double b, int c)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 

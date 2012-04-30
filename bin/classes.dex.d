@@ -1,5 +1,8 @@
 /Users/tonyhawk2100/Programs/MinDis/bin/classes.dex : \
+/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/BCal.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/calcDate.class \
+/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/DBHandler.class \
+/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/DBOP.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula$1.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula$2.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula.class \
