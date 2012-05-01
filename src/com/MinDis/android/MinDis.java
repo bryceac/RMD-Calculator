@@ -34,11 +34,13 @@ public class MinDis extends Activity
 	Spinner selection;
 	ArrayAdapter adapter, madapter, dadapter, yadapter;
 	RMD comp = new RMD();
-    DBHandler db = new DBHandler(this);
+    DBManager db = new DBManager(this);
     DBOP par = new DBOP();
     BCal bcal = new BCal();
 	NumberFormat dp = NumberFormat.getInstance(); /* variable to initiate way of parsing input */
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
+    SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
 
     /** Called when the activity is first created. */
     @Override
@@ -78,6 +80,7 @@ public class MinDis extends Activity
 	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
 	selection.setAdapter(adapter); // assign adapter to combobox
+        
     }
 
 	public void rmdAction(View v) throws Exception
@@ -104,7 +107,6 @@ public class MinDis extends Activity
 
 			// get selection from combobox
 			choice = selection.getSelectedItem().toString();
-
 			// convert selection to integer
 			year = Integer.parseInt(choice);
 
@@ -147,48 +149,129 @@ public class MinDis extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-        par.setMonthAdapter(month);
-        par.setDayAdapter(day);
-        par.setYearAdapter(byear);
-        par.setDistAdapter(selection);
-        SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
+            String bday;
+            
+            bday = month.getSelectedItem().toString();
+            bday += "/";
+            bday += day.getSelectedItem().toString();
+            bday += "/";
+            bday += byear.getSelectedItem().toString();
+            
+            par.setBirth(bday);
+            par.setDistrib(Integer.parseInt(selection.getSelectedItem().toString()));
+            par.setBal(balance.getText().toString());
         
+            par.setMonthAdapter(month);
+            par.setDayAdapter(day);
+            par.setYearAdapter(byear);
+            par.setDistAdapter(selection);
         
-        String bday;
-        // the following converts spinner input into string
-        bday = month.getSelectedItem().toString();
-        bday += "/";
-        bday += day.getSelectedItem().toString();
-        bday += "/";
-        bday += byear.getSelectedItem().toString();
+        AlertDialog.Builder m = new AlertDialog.Builder(this); // create instance of AlertDialog builder
         
-        
-        par.setBirth(bday);
-        par.setDistrib(Integer.parseInt(selection.getSelectedItem().toString()));
-        par.setBal(balance.getText().toString());
-        
-        bcal.setBirth(db.getBirth());
-        bcal.setCal(bcal.getBirth());
 		// handle item selection
 		 switch (item.getItemId())
 		{
             case R.id.save:
-                db.saveData(par.getBirth(), par.getBal(), par.getDistrib());
+                db.open();
+                if(db.saveData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+		{
+            m.setTitle(R.string.save_success); // set dialog title
+            m.setMessage(R.string.save_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+		}
+		else
+        {
+            m.setTitle(R.string.save_failure); // set dialog title
+            m.setMessage(R.string.save_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+        }
+                db.close();
                 return true;
             case R.id.load:
-                par.setSMonth(bcal.getCal().get(Calendar.MONTH) +1);
-                par.setSDay(bcal.getCal().get(Calendar.DATE));
-                par.setSYear(bcal.getCal().get(Calendar.YEAR));
-                par.setSDistrib(db.getYear());
-                month.setSelection(par.getSMonth());
-                day.setSelection(par.getSDay());
-                byear.setSelection(par.getSYear());
-                selection.setSelection(par.getSDistrib());
-                balance.setText(cf.format(db.getBal()));
+                db.open();
+		if(db.records() > 0)
+		{
+                	bcal.setBirth(db.getBirth());
+                	bcal.setCal(bcal.getBirth());
+                    
+                	par.setSMonth(bcal.getCal().get(Calendar.MONTH) +1);
+                	par.setSDay(bcal.getCal().get(Calendar.DATE));
+                	par.setSYear(bcal.getCal().get(Calendar.YEAR));
+                	par.setSDistrib(db.getYear());
+                	month.setSelection(par.getSMonth());
+                	day.setSelection(par.getSDay());
+                	byear.setSelection(par.getSYear());
+                	selection.setSelection(par.getSDistrib());
+                	balance.setText(cf.format(db.getBal()));
+            m.setTitle(R.string.load_success); // set dialog title
+            m.setMessage(R.string.load_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+		}
+		else
+        {
+            m.setTitle(R.string.load_failure); // set dialog title
+            m.setMessage(R.string.load_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+        }
+                db.close();
                 return true;
             case R.id.update:
-                db.updateData(par.getBirth(), par.getBal(), par.getDistrib());
+                db.open();
+		if (db.records() > 0 && db.updateData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+		{
+            m.setTitle(R.string.update_success); // set dialog title
+            m.setMessage(R.string.update_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+		}
+		else
+        {
+            m.setTitle(R.string.update_failure); // set dialog title
+            m.setMessage(R.string.update_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+                                                                               {
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = m.create();
+            m.show();
+        }
+                db.close();
                 return true;
 			case R.id.license:
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dl.dropbox.com/u/332246/LICENSE.txt"));

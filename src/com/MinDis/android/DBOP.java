@@ -27,7 +27,7 @@ public class DBOP
 	String birth;
 	int distrib, smonth, sday, syear, sdistrib;
 	SimpleDateFormat hf = new SimpleDateFormat("MM/dd/yyyy");
-	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM--dd");
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	// DecimalFormat cf = new DecimalFormat("#,###.##");
 	NumberFormat dp = NumberFormat.getInstance();
 	Date human, sql;
@@ -86,22 +86,22 @@ public class DBOP
 	/* the following methods set variables to be used with Spinners */
 	public void setSMonth(int m)
 	{
-		smonth = getMonthAdapter().getPosition(m);
+		smonth = getMonthAdapter().getPosition(Integer.toString(m));
 	}
 
 	public void setSDay(int d)
 	{
-		sday = getDayAdapter().getPosition(d);
+		sday = getDayAdapter().getPosition(Integer.toString(d));
 	}
 
 	public void setSYear(int y)
 	{
-		syear = getYearAdapter().getPosition(y);
+		syear = getYearAdapter().getPosition(Integer.toString(y));
 	}
 
 	public void setSDistrib(int e)
 	{
-		sdistrib = getDistAdapter().getPosition(e);
+		sdistrib = getDistAdapter().getPosition(Integer.toString(e));
 	}
 
 	/* the following returns variable values previously set */

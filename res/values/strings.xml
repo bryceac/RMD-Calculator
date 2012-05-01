@@ -20,25 +20,27 @@
 	<string name="about_agree_button">Agree</string>
 <!-- text for disagree button -->
 	<string name="about_da_button">Disagree</string>
-<!-- license text -->
-	<string name="about_body">
-Copyright (c) 2011 Bryce Campbell\n\n
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\n
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.\n\n
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</string>
 <!-- title for error dialog -->
 	<string name="error_title">Error!</string>
 <!-- error text -->
 	<string name="error">Value(s) cannot be parsed!</string>
+<!-- titles for SQLite statuses -->
+    <string name="save_failure">Save Failed</string>
+    <string name="save_success">Save Successful</string>
+    <string name="load_failure">Load Failed</string>
+    <string name="load_success">Load Successful</string>
+    <string name="update_failure">Update Failed</string>
+    <string name="update_success">Update Sucessful</string>
+<!-- messages for SQLite statuses -->
+    <string name="save_failure_text">Data could not be saved.</string>
+    <string name="save_success_text">Data saved successfully.</string>
+    <string name="load_failure_text">Could not load data.</string>
+    <string name="load_success_text">All data loaded successfully.</string>
+    <string name="update_failure_text">Could not update record.</string>
+    <string name="update_success_text">Record updated successfully.</string>
 <!-- text for okay button -->
 	<string name="ok">OK</string>
+<!-- text for fields -->
     <string name="month">Birth Month</string>
     <string name="day">Birth Day</string>
     <string name="year">Birth Year</string>
