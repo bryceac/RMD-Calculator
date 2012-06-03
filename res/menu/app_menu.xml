@@ -4,8 +4,6 @@
 	android:title="Save Data" />
 <item android:id="@+id/load"
 	android:title="Load Data" />
-<item android:id="@+id/update"
-	android:title="Update Data" />
 <item android:id="@+id/license"
 	android:title="View License" />
 <item android:id="@+id/report" 

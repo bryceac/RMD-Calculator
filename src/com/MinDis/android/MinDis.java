@@ -16,6 +16,7 @@ package com.MinDis.android; // make source part of Android package
 
 import android.app.Activity; // import Android Activity classes
 import android.net.*;
+import android.content.*;
 import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
@@ -176,36 +177,32 @@ public class MinDis extends Activity
 		{
             case R.id.save:
                 db.open();
-                if(db.saveData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
-		{
-            /* m.setTitle(R.string.save_success); // set dialog title
-            m.setMessage(R.string.save_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
+                if (db.records() > 0)
                 {
-                    dialog.cancel();
+                    if (db.updateData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+                    {
+                        mess.setBuilder(R.string.update_success, R.string.update_success_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                    else
+                    {
+                        mess.setBuilder(R.string.update_failure, R.string.update_failure_text, R.string.ok);
+                        mess.getAlert();
+                    }
                 }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
-            mess.setBuilder(R.string.save_success, R.string.save_success_text, R.string.ok);
-            mess.getAlert();
-		}
-		else
-        {
-           /* m.setTitle(R.string.save_failure); // set dialog title
-            m.setMessage(R.string.save_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
+                else
                 {
-                    dialog.cancel();
+                    if (db.saveData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+                    {
+                        mess.setBuilder(R.string.save_success, R.string.save_success_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                    else
+                    {
+                        mess.setBuilder(R.string.save_failure, R.string.save_failure_text, R.string.ok);
+                        mess.getAlert();
+                    }
                 }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
-            mess.setBuilder(R.string.save_failure, R.string.save_failure_text, R.string.ok);
-            mess.getAlert();
-        }
                 db.close();
                 return true;
             case R.id.load:
@@ -224,66 +221,13 @@ public class MinDis extends Activity
                 	byear.setSelection(par.getSYear());
                 	selection.setSelection(par.getSDistrib());
                 	balance.setText(cf.format(db.getBal()));
-            /* m.setTitle(R.string.load_success); // set dialog title
-            m.setMessage(R.string.load_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
+
             mess.setBuilder(R.string.load_success, R.string.load_success_text, R.string.ok);
             mess.getAlert();
 		}
 		else
         {
-            /* m.setTitle(R.string.load_failure); // set dialog title
-            m.setMessage(R.string.load_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
             mess.setBuilder(R.string.load_failure, R.string.load_failure_text, R.string.ok);
-            mess.getAlert();
-        }
-                db.close();
-                return true;
-            case R.id.update:
-                db.open();
-		if (db.records() > 0 && db.updateData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
-		{
-            /* m.setTitle(R.string.update_success); // set dialog title
-            m.setMessage(R.string.update_success_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
-            mess.setBuilder(R.string.update_success, R.string.update_success_text, R.string.ok);
-            mess.getAlert();
-		}
-		else
-        {
-            /* m.setTitle(R.string.update_failure); // set dialog title
-            m.setMessage(R.string.update_failure_text).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
-                                                                               {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert = m.create();
-            m.show(); */
-            mess.setBuilder(R.string.update_failure, R.string.update_failure_text, R.string.ok);
             mess.getAlert();
         }
                 db.close();

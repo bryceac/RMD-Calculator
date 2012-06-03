@@ -28,7 +28,7 @@ public class EMess
 		a = context;
 	}
 
-	public void setBuilder(String title, String mess, String ok)
+	public void setBuilder(int title, int mess, int ok)
 	{
 		m = new AlertDialog.Builder(a);
 		m.setTitle(title);

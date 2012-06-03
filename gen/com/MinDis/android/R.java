@@ -32,20 +32,19 @@ public final class R {
         public static final int bal=0x7f070006;
         public static final int byear=0x7f070005;
         public static final int calculate=0x7f07000c;
-        public static final int contact=0x7f070012;
+        public static final int contact=0x7f070011;
         public static final int day=0x7f070003;
-        public static final int license=0x7f070010;
+        public static final int license=0x7f07000f;
         public static final int load=0x7f07000e;
         public static final int mess=0x7f070000;
         public static final int month=0x7f070001;
-        public static final int report=0x7f070011;
+        public static final int report=0x7f070010;
         public static final int result=0x7f07000a;
         public static final int rmd=0x7f07000b;
         public static final int s1=0x7f070002;
         public static final int s2=0x7f070004;
         public static final int save=0x7f07000d;
         public static final int spinner=0x7f070009;
-        public static final int update=0x7f07000f;
         public static final int year=0x7f070008;
     }
     public static final class layout {
