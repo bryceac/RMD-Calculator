@@ -37,6 +37,10 @@ public class MinDis extends Activity
 	NumberFormat dp = NumberFormat.getInstance(); /* variable to initiate way of parsing input */
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
 
+    SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
+	prevYear pyear = new prevYear(); /* create object of prevYear class in order for new functionality to work */
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -74,7 +78,21 @@ public class MinDis extends Activity
 
 	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
-	selection.setAdapter(adapter); // assign adapter to combobox
+	// give Spinner a listener for new functionality to work
+	select.setOnItemSelectedListener(new OnItemSelectListener() {
+		@Override
+		public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+		{
+			 int iyear = Integer.parseInt(selection.getSelectItem().toString()); /* get year selection for use with new functionality */
+			balance.setHint(R.string.balance + " from 12/31/" + pyear.getPrevYear(iyear));
+		}
+
+		// create empty method
+		@Override
+		public void onNothingSelected(AdapterView<?> parentView)
+		{
+		}
+	});
     }
 
 	public void rmdAction(View v) throws Exception

@@ -13,7 +13,7 @@
 <!-- text to specify where years can be chosen -->
 	<string name="y">Year:</string>
 <!-- text for Combobox selection pop up -->
-	<string name="choices">Choices</string>
+	<string name="choices">Select Year of Distribution</string>
 <!-- set title for EULA Dialog -->
 	<string name="about_title">MIT License</string>
 <!-- text for agree button -->

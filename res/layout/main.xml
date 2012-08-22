@@ -38,16 +38,11 @@
 	android:layout_height="wrap_content"
     android:prompt="@string/year"
 	/>
-<!-- create balance label -->
-<TextView android:id="@+id/bal"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:text="@string/balance"
-/>
 <!-- create textfield to get balance -->
 <EditText android:id="@+id/amount"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
+	android:hint="@string/balance"
 />
 <!-- create year label -->
 <TextView android:id="@+id/year"
