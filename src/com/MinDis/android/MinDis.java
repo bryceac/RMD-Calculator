@@ -21,6 +21,7 @@ import android.content.*; /* import Android content clases for DialogInterface *
 import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
+import android.widget.AdapterView.*; // import to have action run after item selection
 import java.text.*; // required to parse and format data
 
 public class MinDis extends Activity
@@ -79,11 +80,11 @@ public class MinDis extends Activity
 	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
 	// give Spinner a listener for new functionality to work
-	select.setOnItemSelectedListener(new OnItemSelectListener() {
+	selection.setOnItemSelectedListener(new OnItemSelectedListener() {
 		
 		public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
 		{
-			 int iyear = Integer.parseInt(selection.getSelectItem().toString()); /* get year selection for use with new functionality */
+			int iyear = Integer.parseInt(selection.getSelectedItem().toString()); /* get year selection for use with new functionality */
 			balance.setHint(R.string.balance + " from 12/31/" + pyear.getPrevYear(iyear));
 		}
 

@@ -11,6 +11,7 @@
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula$2.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis$1.class \
+/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis$2.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/prevDate.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/prevYear.class \
