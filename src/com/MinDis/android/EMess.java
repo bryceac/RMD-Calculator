@@ -11,13 +11,38 @@
 *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL *THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING *FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER *DEALINGS IN THE SOFTWARE.
 */
-/** the prevYear class take a year and returns the previous year */
+
 package com.MinDis.android;
-public class prevYear
+import android.content.*; // import for DialogInterface and Context
+import android.app.AlertDialog; // import AlertDialog
+
+/* the EMess class creates AlertDialogs to be displayed in App */
+public class EMess
 {
-	// the getPrevYear method returns the previous year
-	public int getPrevYear(int y)
+	Context a; /* variable to hold context, as AlertDialog.Builder needs it */
+	AlertDialog alert; // AlertDialog variable
+	AlertDialog.Builder m; // variable used in creating Alert Dialog
+
+	public EMess(Context context)
 	{
-		return y -1;
+		a = context;
+	}
+
+	public void setBuilder(int title, int mess, int ok)
+	{
+		m = new AlertDialog.Builder(a);
+		m.setTitle(title);
+		m.setMessage(mess).setCancelable(true).setPositiveButton(ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id)
+			{
+				dialog.cancel();
+			}
+		});
+	}
+
+	public void getAlert()
+	{
+		alert = m.create();
+		m.show();
 	}
 }
