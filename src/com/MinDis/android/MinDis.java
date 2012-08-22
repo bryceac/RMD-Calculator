@@ -80,7 +80,7 @@ public class MinDis extends Activity
 
 	// give Spinner a listener for new functionality to work
 	select.setOnItemSelectedListener(new OnItemSelectListener() {
-		@Override
+		
 		public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
 		{
 			 int iyear = Integer.parseInt(selection.getSelectItem().toString()); /* get year selection for use with new functionality */
@@ -88,7 +88,6 @@ public class MinDis extends Activity
 		}
 
 		// create empty method
-		@Override
 		public void onNothingSelected(AdapterView<?> parentView)
 		{
 		}
