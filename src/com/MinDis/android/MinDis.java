@@ -20,6 +20,7 @@ import android.content.*;
 import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
+import android.widget.AdapterView.*; // import for new functionality
 import java.text.*; // required to parse and format data
 import java.util.*; // import for calendar
 public class MinDis extends Activity
@@ -80,6 +81,21 @@ public class MinDis extends Activity
 	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
 	selection.setAdapter(adapter); // assign adapter to combobox
+        
+        // give Spinner a listener for new functionality to work
+        selection.setOnItemSelectedListener(new OnItemSelectedListener() {
+            
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                int iyear = Integer.parseInt(selection.getSelectedItem().toString()); /* get year selection for use with new functionality */
+                balance.setHint(R.string.balance + " from 12/31/" + pyear.getPrevYear(iyear));
+            }
+            
+            // create empty method
+            public void onNothingSelected(AdapterView<?> parentView)
+            {
+            }
+        });
         
     }
 
