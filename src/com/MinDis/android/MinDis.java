@@ -42,6 +42,7 @@ public class MinDis extends Activity
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
     SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
+    prevYear pyear = new prevYear();
 
     /** Called when the activity is first created. */
     @Override
@@ -87,8 +88,17 @@ public class MinDis extends Activity
             
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-                int iyear = Integer.parseInt(selection.getSelectedItem().toString()); /* get year selection for use with new functionality */
-                balance.setHint(R.string.balance + " from 12/31/" + pyear.getPrevYear(iyear));
+                try
+                {
+                    int[] choicesArray = getResources().getIntArray(R.array.choices_array);
+                    int iyear = choicesArray[position]; /* get year selection for use with new functionality */
+                    balance.setHint(getResources().getString(R.string.balance) + " from 12/31/" + pyear.getPrevYear(iyear));
+                }
+                catch(Exception o)
+                {
+                    mess.setBuilder(R.string.error_title, R.string.error, R.string.ok);
+                    mess.getAlert();
+                }
             }
             
             // create empty method
