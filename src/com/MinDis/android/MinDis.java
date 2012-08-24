@@ -20,6 +20,7 @@ import android.content.*;
 import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
+import android.widget.AdapterView.*; // import for new functionality
 import java.text.*; // required to parse and format data
 import java.util.*; // import for calendar
 public class MinDis extends Activity
@@ -41,6 +42,7 @@ public class MinDis extends Activity
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
     SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
+    prevYear pyear = new prevYear();
 
     /** Called when the activity is first created. */
     @Override
@@ -50,36 +52,50 @@ public class MinDis extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); // get Application layout
 
-	month = (Spinner)findViewById(R.id.month);
-	madapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
+        month = (Spinner)findViewById(R.id.month);
+        madapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
 
-	madapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	month.setAdapter(madapter);
+        madapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        month.setAdapter(madapter);
 
-	day = (Spinner)findViewById(R.id.day);
-	dadapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_dropdown_item);
+        day = (Spinner)findViewById(R.id.day);
+        dadapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_dropdown_item);
 	
-	dadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	day.setAdapter(dadapter);
+        dadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        day.setAdapter(dadapter);
 
-	byear = (Spinner)findViewById(R.id.byear);
-	yadapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
+        byear = (Spinner)findViewById(R.id.byear);
+        yadapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
 
-	yadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-	byear.setAdapter(yadapter);
+        byear.setAdapter(yadapter);
 
-	balance = (EditText)findViewById(R.id.amount); // get Textfield
-	/* the following two statements creates a combobox */
-	selection = (Spinner)findViewById(R.id.spinner);
-	adapter = ArrayAdapter.createFromResource(this, R.array.choices_array, android.R.layout.simple_spinner_dropdown_item);
-	rmd = (EditText)findViewById(R.id.rmd); // get TextField
-	calc = (Button)findViewById(R.id.calculate); // get TextField
-	rmd.setEnabled(false); /* make textfield that holds results read-only */
+        balance = (EditText)findViewById(R.id.amount); // get Textfield
+        /* the following two statements creates a combobox */
+        selection = (Spinner)findViewById(R.id.spinner);
+        adapter = ArrayAdapter.createFromResource(this, R.array.choices_array, android.R.layout.simple_spinner_dropdown_item);
+        rmd = (EditText)findViewById(R.id.rmd); // get TextField
+        calc = (Button)findViewById(R.id.calculate); // get TextField
+        rmd.setEnabled(false); /* make textfield that holds results read-only */
 
-	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
-	selection.setAdapter(adapter); // assign adapter to combobox
+        selection.setAdapter(adapter); // assign adapter to combobox
+        
+        // add new functionality
+        selection.setOnItemSelectedListener(new OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                int iyear = Integer.parseInt(parentView.getItemAtPosition(position).toString()); /* get year selection for use with new functionality */
+                balance.setHint(getResources().getString(R.string.balance) + " from 12/31/" + pyear.getPrevYear(iyear));
+            }
+            
+            // create empty method
+            public void onNothingSelected(AdapterView<?> parentView)
+            {
+            }
+        });
         
     }
 

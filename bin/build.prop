@@ -1,5 +1,9 @@
 #Last build type
+<<<<<<< HEAD
 #Sun, 03 Jun 2012 09:36:41 -0700
+=======
+#Fri, 24 Aug 2012 10:27:32 -0700
+>>>>>>> experimental
 
 build.last.target=release
 
