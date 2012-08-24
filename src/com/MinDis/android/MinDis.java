@@ -16,14 +16,12 @@ package com.MinDis.android; // make source part of Android package
 
 import android.app.Activity; // import Android Activity classes
 import android.net.*;
-import android.app.AlertDialog; // import AlertDialog classes
-import android.content.*; /* import Android content clases for DialogInterface */
+import android.content.*;
 import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
-import android.widget.AdapterView.*; // import to have action run after item selection
 import java.text.*; // required to parse and format data
-
+import java.util.*; // import for calendar
 public class MinDis extends Activity
 {
 
@@ -34,13 +32,15 @@ public class MinDis extends Activity
 	Button calc;
 	Spinner selection;
 	ArrayAdapter adapter, madapter, dadapter, yadapter;
+    EMess mess = new EMess(this);
 	RMD comp = new RMD();
+    DBManager db = new DBManager(this);
+    DBOP par = new DBOP();
+    BCal bcal = new BCal();
 	NumberFormat dp = NumberFormat.getInstance(); /* variable to initiate way of parsing input */
 	DecimalFormat cf = new DecimalFormat("#,###.##"); /* this object is used to format output */
-
     SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
-	prevYear pyear = new prevYear(); /* create object of prevYear class in order for new functionality to work */
 
     /** Called when the activity is first created. */
     @Override
@@ -79,20 +79,8 @@ public class MinDis extends Activity
 
 	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // set drop down resource
 
-	// give Spinner a listener for new functionality to work
-	selection.setOnItemSelectedListener(new OnItemSelectedListener() {
-		
-		public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
-		{
-			int iyear = Integer.parseInt(selection.getSelectedItem().toString()); /* get year selection for use with new functionality */
-			balance.setHint(R.string.balance + " from 12/31/" + pyear.getPrevYear(iyear));
-		}
-
-		// create empty method
-		public void onNothingSelected(AdapterView<?> parentView)
-		{
-		}
-	});
+	selection.setAdapter(adapter); // assign adapter to combobox
+        
     }
 
 	public void rmdAction(View v) throws Exception
@@ -119,7 +107,6 @@ public class MinDis extends Activity
 
 			// get selection from combobox
 			choice = selection.getSelectedItem().toString();
-
 			// convert selection to integer
 			year = Integer.parseInt(choice);
 
@@ -134,9 +121,9 @@ public class MinDis extends Activity
 		catch (java.text.ParseException e)
 		{
 			/* the following code creates a dialog box that talks about error */
-			AlertDialog.Builder m = new AlertDialog.Builder(this); // create instance of AlertDialog builder
+			/* AlertDialog.Builder m = new AlertDialog.Builder(this); // create instance of AlertDialog builder
 			m.setTitle(R.string.error_title); // set dialog title
-			m.setMessage(R.string.error).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() /* set message and create button to close dialog box */
+			m.setMessage(R.string.error).setCancelable(true).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() // set message and create button to close dialog box
 {
 	public void onClick(DialogInterface dialog, int id)
 	{
@@ -144,7 +131,11 @@ public class MinDis extends Activity
 	}
 });
 			AlertDialog alert = m.create();
-			m.show();
+			m.show(); */
+            
+            // the following creates an AlertDialog via a custom class
+            mess.setBuilder(R.string.error_title, R.string.error, R.string.ok);
+            mess.getAlert();
 
 		}		
 
@@ -162,9 +153,85 @@ public class MinDis extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+            String bday;
+            
+            bday = month.getSelectedItem().toString();
+            bday += "/";
+            bday += day.getSelectedItem().toString();
+            bday += "/";
+            bday += byear.getSelectedItem().toString();
+            
+            par.setBirth(bday);
+            par.setDistrib(Integer.parseInt(selection.getSelectedItem().toString()));
+            par.setBal(balance.getText().toString());
+        
+            par.setMonthAdapter(month);
+            par.setDayAdapter(day);
+            par.setYearAdapter(byear);
+            par.setDistAdapter(selection);
+        
+        // AlertDialog.Builder m = new AlertDialog.Builder(this); // create instance of AlertDialog builder
+        
 		// handle item selection
 		 switch (item.getItemId())
 		{
+            case R.id.save:
+                db.open();
+                if (db.records() > 0)
+                {
+                    if (db.updateData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+                    {
+                        mess.setBuilder(R.string.update_success, R.string.update_success_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                    else
+                    {
+                        mess.setBuilder(R.string.update_failure, R.string.update_failure_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                }
+                else
+                {
+                    if (db.saveData(par.getBirth(), par.getBal(), par.getDistrib()) != 0)
+                    {
+                        mess.setBuilder(R.string.save_success, R.string.save_success_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                    else
+                    {
+                        mess.setBuilder(R.string.save_failure, R.string.save_failure_text, R.string.ok);
+                        mess.getAlert();
+                    }
+                }
+                db.close();
+                return true;
+            case R.id.load:
+                db.open();
+		if(db.records() > 0)
+		{
+                	bcal.setBirth(db.getBirth());
+                	bcal.setCal(bcal.getBirth());
+                    
+                	par.setSMonth(bcal.getCal().get(Calendar.MONTH) +1);
+                	par.setSDay(bcal.getCal().get(Calendar.DATE));
+                	par.setSYear(bcal.getCal().get(Calendar.YEAR));
+                	par.setSDistrib(db.getYear());
+                	month.setSelection(par.getSMonth());
+                	day.setSelection(par.getSDay());
+                	byear.setSelection(par.getSYear());
+                	selection.setSelection(par.getSDistrib());
+                	balance.setText(cf.format(db.getBal()));
+
+            mess.setBuilder(R.string.load_success, R.string.load_success_text, R.string.ok);
+            mess.getAlert();
+		}
+		else
+        {
+            mess.setBuilder(R.string.load_failure, R.string.load_failure_text, R.string.ok);
+            mess.getAlert();
+        }
+                db.close();
+                return true;
 			case R.id.license:
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dl.dropbox.com/u/332246/LICENSE.txt"));
 				startActivity(i);
