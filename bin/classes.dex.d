@@ -7,13 +7,8 @@
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/DBOP.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/EMess$1.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/EMess.class \
-/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula$1.class \
-/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula$2.class \
-/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/Eula.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis$1.class \
-/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis$2.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/MinDis.class \
-/Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/prevDate.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/prevYear.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/R$array.class \
 /Users/tonyhawk2100/Programs/MinDis/bin/classes/com/MinDis/android/R$attr.class \
