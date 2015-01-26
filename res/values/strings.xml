@@ -44,11 +44,14 @@
 	<string name="xml_error_title">XML Export Failed</string>
 	<string name="xml_error">Data could not be saved to XML</string>
 	<string name="xml_load_error_title">XML Import Failed</string>
-	<string name="xml_load_error">Data could not be imported because file cannot be found or read.</string>
+	<string name="xml_load_error">Data could not be imported because file cannot be read.</string>
 	<string name="xml_success_title">XML Export Successful</string>
 	<string name="xml_message">Data saved to XML successfully</string>
 	<string name="xml_load_success_title">XML Import Successful</string>
 	<string name="xml_load_success">Data imported successfully from XML.</string>
+<!-- messages to display if file does not exist -->
+	<string name="file_error_title">File Cannot be Found</string>
+	<string name="file_error">File does not exist.</string>
 <!-- text for fields -->
     <string name="month">Birth Month</string>
     <string name="day">Birth Day</string>

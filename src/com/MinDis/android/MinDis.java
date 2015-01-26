@@ -17,7 +17,7 @@ package com.MinDis.android; // make source part of Android package
 import android.app.Activity; // import Android Activity classes
 import android.net.*;
 import android.content.*;
-import android.os.Bundle; // required package for Android Activity source
+import android.os.*;
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
 import android.widget.AdapterView.*; // import for new functionality
@@ -54,7 +54,11 @@ public class MinDis extends Activity
     prevYear pyear = new prevYear();
     Serializer serializer = new Persister();
     Data data;
-    File xml = new File("rmd.xml");
+    
+    // variables needed to write to SD card
+    File sdCard = Environment.getExternalStorageDirectory();
+    File dir = new File(sdCard.getAbsolutePath() + "/rmd/");
+    File xml = new File(dir, "rmd.xml");
 
     /** Called when the activity is first created. */
     @Override
@@ -263,6 +267,12 @@ public class MinDis extends Activity
             case R.id.export:
             	data = new Data(bday, balance.getText().toString(), selection.getSelectedItem().toString());
             	
+            	if (!dir.exists())
+            	{
+            		dir.mkdirs();
+            	}
+            	else;
+            	
 			try {
 				serializer.write(data, xml);
 				
@@ -274,22 +284,30 @@ public class MinDis extends Activity
 			}
             	return true;
             case R.id.glean:
-			try {
-				data = serializer.read(Data.class, xml);
-				Date born = human.parse(data.getBirth());
-				bcal.setCal(born);
-				month.setSelection(bcal.getCal().get(Calendar.MONTH)+1);
-				day.setSelection(bcal.getCal().get(Calendar.DATE));
-				byear.setSelection(bcal.getCal().get(Calendar.YEAR));
-				balance.setText(data.getBalance());
-				selection.setSelection(Integer.parseInt(data.getYear()));
+            	if (xml.exists())
+            	{
+            		try {
+            				data = serializer.read(Data.class, xml);
+            				Date born = human.parse(data.getBirth());
+            				bcal.setCal(born);
+            				month.setSelection(bcal.getCal().get(Calendar.MONTH)+1);
+            				day.setSelection(bcal.getCal().get(Calendar.DATE));
+            				byear.setSelection(bcal.getCal().get(Calendar.YEAR));
+            				balance.setText(data.getBalance());
+            				selection.setSelection(Integer.parseInt(data.getYear()));
 				
-				mess.setBuilder(R.string.xml_load_success_title, R.string.xml_load_success, R.string.ok);
-            	mess.getAlert();
-			} catch (Exception e) {
-				mess.setBuilder(R.string.xml_load_error_title, R.string.xml_load_error, R.string.ok);
-            	mess.getAlert();
-			}
+            				mess.setBuilder(R.string.xml_load_success_title, R.string.xml_load_success, R.string.ok);
+            				mess.getAlert();
+            		} catch (Exception e) {
+            			mess.setBuilder(R.string.xml_load_error_title, R.string.xml_load_error, R.string.ok);
+            			mess.getAlert();
+            		}
+            	}
+            	else
+            	{
+            		mess.setBuilder(R.string.file_error_title, R.string.file_error, R.string.ok);
+            		mess.getAlert();
+            	}
             	return true;
 			case R.id.license:
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dl.dropbox.com/u/332246/LICENSE.txt"));

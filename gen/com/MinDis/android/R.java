@@ -76,20 +76,24 @@ public final class R {
         /**  text for Combobox selection pop up 
          */
         public static final int choices=0x7f050006;
-        public static final int day=0x7f050022;
+        public static final int day=0x7f050024;
         /**  error text 
          */
         public static final int error=0x7f05000b;
         /**  title for error dialog 
          */
         public static final int error_title=0x7f05000a;
+        public static final int file_error=0x7f050022;
+        /**  messages to display if file does not exist 
+         */
+        public static final int file_error_title=0x7f050021;
         public static final int load_failure=0x7f05000e;
         public static final int load_failure_text=0x7f050014;
         public static final int load_success=0x7f05000f;
         public static final int load_success_text=0x7f050015;
         /**  text for fields 
          */
-        public static final int month=0x7f050021;
+        public static final int month=0x7f050023;
         /**  text for okay button 
          */
         public static final int ok=0x7f050018;
@@ -124,6 +128,6 @@ public final class R {
         /**  text to specify where years can be chosen 
          */
         public static final int y=0x7f050005;
-        public static final int year=0x7f050023;
+        public static final int year=0x7f050025;
     }
 }
