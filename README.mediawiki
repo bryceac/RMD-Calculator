@@ -1,0 +1,26 @@
+=RMD Calculator=
+
+Version: 1.6
+
+This app calculates the Required Minimum Distribution (RMD) of people ages 70-115+
+
+== Support ==
+
+App support can be gained by emailing the following address.
+
+android@brycecampbell.me
+
+== FAQ ==
+
+<ul>
+<li>
+<dl>
+<dt>I am trying to import an XML file from the iOS app. Where must I save this?</dt>
+<dd>This app looks in a folder located on the SD card called <strong>rmd</strong> and the XML file should be called <strong>rmd.xml</rmd>, which is also the default name I have the iOS version save to. If neither of these requirements are met, the XML file will not be found.</dd>
+</dl>
+</li>
+</ul>
+
+== Notes ==
+
+This app makes use of [http://simple.sourceforge.net/ Simple] from niallg, which is licensed under the Apache License, to produce and parse XML files. 
