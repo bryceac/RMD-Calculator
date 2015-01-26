@@ -322,7 +322,7 @@ public class MinDis extends Activity
 			case R.id.contact:
 				Intent c = new Intent(Intent.ACTION_SEND);
 				c.setType("plain/text");
-				c.putExtra(android.content.Intent.EXTRA_EMAIL, "tonyhawk2100@gmail.com");
+				c.putExtra(android.content.Intent.EXTRA_EMAIL, "android@brycecampbell.me");
 				startActivity(Intent.createChooser(c, "Contact Developer..."));
 				return true;
 				
