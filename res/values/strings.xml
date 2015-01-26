@@ -30,7 +30,7 @@
     <string name="load_failure">Load Failed</string>
     <string name="load_success">Load Successful</string>
     <string name="update_failure">Update Failed</string>
-    <string name="update_success">Update Sucessful</string>
+    <string name="update_success">Update Successful</string>
 <!-- messages for SQLite statuses -->
     <string name="save_failure_text">Data could not be saved.</string>
     <string name="save_success_text">Data saved successfully.</string>
@@ -40,6 +40,15 @@
     <string name="update_success_text">Record updated successfully.</string>
 <!-- text for okay button -->
 	<string name="ok">OK</string>
+<!--  text for XML functionality -->
+	<string name="xml_error_title">XML Export Failed</string>
+	<string name="xml_error">Data could not be saved to XML</string>
+	<string name="xml_load_error_title">XML Import Failed</string>
+	<string name="xml_load_error">Data could not be imported because file cannot be found or read.</string>
+	<string name="xml_success_title">XML Export Successful</string>
+	<string name="xml_message">Data saved to XML successfully</string>
+	<string name="xml_load_success_title">XML Import Successful</string>
+	<string name="xml_load_success">Data imported successfully from XML.</string>
 <!-- text for fields -->
     <string name="month">Birth Month</string>
     <string name="day">Birth Day</string>

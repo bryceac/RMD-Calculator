@@ -21,8 +21,17 @@ import android.os.Bundle; // required package for Android Activity source
 import android.view.*; // handles screen layout and user interaction
 import android.widget.*; // required for UI elements
 import android.widget.AdapterView.*; // import for new functionality
+
+import java.io.*; // import library for reading files
 import java.text.*; // required to parse and format data
 import java.util.*; // import for calendar
+
+// import classes from simple xml framework
+import org.simpleframework.xml.*;
+import org.simpleframework.xml.core.*;
+
+// import class to specify XML format
+import com.MinDis.android.xml.Data;
 public class MinDis extends Activity
 {
 
@@ -43,6 +52,9 @@ public class MinDis extends Activity
     SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
     prevYear pyear = new prevYear();
+    Serializer serializer = new Persister();
+    Data data;
+    File xml = new File("rmd.xml");
 
     /** Called when the activity is first created. */
     @Override
@@ -248,6 +260,37 @@ public class MinDis extends Activity
         }
                 db.close();
                 return true;
+            case R.id.export:
+            	data = new Data(bday, balance.getText().toString(), selection.getSelectedItem().toString());
+            	
+			try {
+				serializer.write(data, xml);
+				
+				mess.setBuilder(R.string.xml_success_title, R.string.xml_message, R.string.ok);
+            	mess.getAlert();
+			} catch (Exception e) {
+				mess.setBuilder(R.string.xml_error_title, R.string.xml_error, R.string.ok);
+            	mess.getAlert();
+			}
+            	return true;
+            case R.id.glean:
+			try {
+				data = serializer.read(Data.class, xml);
+				Date born = human.parse(data.getBirth());
+				bcal.setCal(born);
+				month.setSelection(bcal.getCal().get(Calendar.MONTH)+1);
+				day.setSelection(bcal.getCal().get(Calendar.DATE));
+				byear.setSelection(bcal.getCal().get(Calendar.YEAR));
+				balance.setText(data.getBalance());
+				selection.setSelection(Integer.parseInt(data.getYear()));
+				
+				mess.setBuilder(R.string.xml_load_success_title, R.string.xml_load_success, R.string.ok);
+            	mess.getAlert();
+			} catch (Exception e) {
+				mess.setBuilder(R.string.xml_load_error_title, R.string.xml_load_error, R.string.ok);
+            	mess.getAlert();
+			}
+            	return true;
 			case R.id.license:
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dl.dropbox.com/u/332246/LICENSE.txt"));
 				startActivity(i);
