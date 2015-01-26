@@ -52,7 +52,7 @@ public class MinDis extends Activity
     SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat human = new SimpleDateFormat("MM/dd/yyyy");
     prevYear pyear = new prevYear();
-    Serializer serializer = new Persister();
+    Serializer serializer;
     Data data;
     
     // variables needed to write to SD card
@@ -266,6 +266,7 @@ public class MinDis extends Activity
                 return true;
             case R.id.export:
             	data = new Data(bday, balance.getText().toString(), selection.getSelectedItem().toString());
+            	serializer = new Persister();
             	
             	if (!dir.exists())
             	{
@@ -284,17 +285,18 @@ public class MinDis extends Activity
 			}
             	return true;
             case R.id.glean:
+            	serializer = new Persister();
             	if (xml.exists())
             	{
             		try {
             				data = serializer.read(Data.class, xml);
             				Date born = human.parse(data.getBirth());
             				bcal.setCal(born);
-            				month.setSelection(bcal.getCal().get(Calendar.MONTH)+1);
-            				day.setSelection(bcal.getCal().get(Calendar.DATE));
-            				byear.setSelection(bcal.getCal().get(Calendar.YEAR));
+            				month.setSelection(((ArrayAdapter)month.getAdapter()).getPosition(String.valueOf(bcal.getCal().get(Calendar.MONTH)+1)));
+            				day.setSelection(((ArrayAdapter) day.getAdapter()).getPosition(String.valueOf(bcal.getCal().get(Calendar.DATE))));
+            				byear.setSelection(((ArrayAdapter) byear.getAdapter()).getPosition(String.valueOf(bcal.getCal().get(Calendar.YEAR))));
             				balance.setText(data.getBalance());
-            				selection.setSelection(Integer.parseInt(data.getYear()));
+            				selection.setSelection(((ArrayAdapter) selection.getAdapter()).getPosition(data.getYear()));
 				
             				mess.setBuilder(R.string.xml_load_success_title, R.string.xml_load_success, R.string.ok);
             				mess.getAlert();
