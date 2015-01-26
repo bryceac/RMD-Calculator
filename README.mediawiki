@@ -16,7 +16,7 @@ android@brycecampbell.me
 <li>
 <dl>
 <dt>I am trying to import an XML file from the iOS app. Where must I save this?</dt>
-<dd>This app looks in a folder located on the SD card called <strong>rmd</strong> and the XML file should be called <strong>rmd.xml</strong>>, which is also the default name I have the iOS version save to. If neither of these requirements are met, the XML file will not be found.</dd>
+<dd>This app looks in a folder located on the SD card called <strong>rmd</strong> and the XML file should be called <strong>rmd.xml</strong>, which is also the default name I have the iOS version save to. If neither of these requirements are met, the XML file will not be found.</dd>
 </dl>
 </li>
 </ul>
